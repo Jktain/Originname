@@ -1,55 +1,76 @@
-// 1)  Напишите if..else, соответствующий следующему switch:
-//switch (browser) {
-//   case 'Edge':
-//     alert( "You've got the Edge!" );
-//     break;
+// 1)  Обязателен ли "else"?
+// Следующая функция возвращает true, если параметр age больше 18. В
+//     ином случае она запрашивает подтверждение через confirm и 
+//     возвращает его результат:
+// let age = 14;
+// function checkAge(age) {
+//     if (age > 18) {
+//       return true;
+//     } else {
+//       // ...
+//       return confirm('Родители разрешили?');
+//     }
+//   }
+// Будет ли эта функция работать как-то иначе, если убрать else?
 
-//   case 'Chrome':
-//   case 'Firefox':
-//   case 'Safari':
-//   case 'Opera':
-//     alert( 'Okay we support these browsers too' );
-//     break;
+//   function checkAge(age) {
+//     if (age > 18) {
+//       return true;
+//     }
+//     // ...
+//     return confirm('Родители разрешили?');
+//   }
 
-//   default:
-//     alert( 'We hope that this page looks ok!' );
-// }
-
-//Ответ: 
-    // if(browser == "Edge") {
-    //     alert( "You've got the Edge!" );
-    //  } else if (browser == 'Chrome' || browser == 'Firefox' || 
-    //             browser == 'Safari' || browser == 'Opera'){
-    //     alert( 'Okay we support these browsers too' );
-    //  } else {
-    //     alert( 'We hope that this page looks ok!' );
-    //  }
+//Ответ: Оба варианта функций работают одинаково, отличий нет.
 //------------------------------------ 2 ----------------------------
-//Перепишите код с использованием одной конструкции switch:
-// const number = +prompt('Введите число между 0 и 3', '');
+// Перепишите функцию, используя оператор '?' или '||'
 
-// if (number === 0) {
-//   alert('Вы ввели число 0');
+// function checkAge(age) {
+//     if (age > 18) {
+//       return true;
+//     } else {
+//       return confirm('Родители разрешили?');
+//     }
 // }
 
-// if (number === 1) {
-//   alert('Вы ввели число 1');
+// Ответ: 
+// function checkAge(age) {
+//     return (age > 18) ? true : confirm('Родители разрешили?');
 // }
 
-// if (number === 2 || number === 3) {
-//   alert('Вы ввели число 2, а может и 3');
+// function checkAge(age) {
+//     return (age > 18) || confirm('Родители разрешили?');
 // }
+//-------------------------------- 3 -----------------------------------
+// Напишите функцию min(a,b), которая возвращает меньшее из чисел a и b.
 
-//Ответ: 
-// switch(+prompt('Введите число между 0 и 3', '')){
-//     case 0: 
-//         alert("Вы ввели число 0");
-//         break;
-//     case 1: 
-//         alert("Вы ввели число 1");
-//         break;
-//     case 2: 
-//     case 3:
-//         alert("Вы ввели число 2, а может и 3");
-//         break;
+// Ответ: 
+// function min(a, b) {
+//     if (a < b) {
+//         return a;
+//     } else {
+//         return b;
+//     }
 // }
+//-------------------------------- 4 -----------------------------------
+// Напишите функцию pow(x,n), которая возвращает x в степени n. Иначе 
+//     говоря, умножает x на себя n раз и возвращает результат. В этой
+//     задаче функция обязана поддерживать только натуральные значения n
+//     т.е. целые от 1 и выше.
+
+let x = prompt("x? "),
+    n = prompt("n? ");
+
+function pow(x, n){
+    let res = x;
+    for (let i = 1; i < n; i++) {
+        res *= x;
+    }
+    return res;
+}
+
+if (n < 1) {
+    alert(`Степень ${n} не поддерживается, используйте натуральное число`);
+  } else {
+    alert( pow(x, n) );
+  }
