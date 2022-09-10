@@ -1,42 +1,50 @@
-// 1)Есть объект salaries с произвольным количеством свойств, содержащих
-//     заработные платы
+// 1)Напишите деструктурирующее присваивание, которое:
 
-// Напишите функцию sumSalaries(salaries), которая возвращает сумму всех
-//     зарплат с помощью метода Object.values и цикла for..of.
+//     - свойство name присвоит в переменную name.
+//     - свойство years присвоит в переменную age.
+//     - свойство isAdmin присвоит в переменную isAdmin (false, если нет
+//     такого свойства)
 
-// Если объект salaries пуст, то результат должен быть 0.
+// Oтвет: 
+// let user = { name: "John", years: 30 };
 
-// Ответ: 
-// function sumSalaries(salaries) {
-//     let sum = 0;
-//     for (let value of Object.values(salaries)) {
-//         sum += value;
-//     }
-//     return sum;
-// }
+// let {name, years: age, isAdmin = false} = user;
 
-// let salaries = {
-    
-// };
-  
-// console.log( sumSalaries(salaries) );
+// alert( name ); // John
+// alert( age ); // 30
+// alert( isAdmin ); // false
 
 //------------------------------------------- 2 -------------------------------------------
-// Напишите функцию count(obj), которая возвращает количество
-//     свойств объекта:
+// Создайте функцию topSalary(salaries), которая возвращает имя самого
+//     высокооплачиваемого сотрудника.
+
+// Если объект salaries пустой, то нужно вернуть null.
+// Если несколько высокооплачиваемых сотрудников, можно вернуть любого
+//     из них.
+// P.S. Используйте Object.entries и деструктурирование, чтобы перебрать
+//     пары ключ/значение.
 
 // Ответ: 
-// let user = {
-//   name: 'John',
-//   age: 30
-// };
+let salaries = {
+    "John": 500,
+    "Pete": 300,
+    "Mary": 450
+};
 
-// console.log( count(user) ); // 2
+function topSalary (salaries) {
+    let top,
+        max = null;
 
-// function count(obj) {
-//     return Object.keys(obj).length;
-// }
+    for (let [key, value] of Object.entries(salaries)) {
+        if (value > max) {
+            max = value;
+            top = key;
+        }
+    }
+    return top;
+}
 
+console.log(topSalary(salaries));
 //------------------------------------------- 3 -------------------------------------------
 
 
