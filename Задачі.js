@@ -1,59 +1,24 @@
-// 1)Представьте, что у нас имеется некий объект obj, созданный 
-//     функцией-конструктором – мы не знаем какой именно, но хотелось бы
-//     создать ещё один объект такого же типа.
-// Можем ли мы сделать так?
-
-// let obj2 = new obj.constructor();
-// Приведите пример функции-конструктора для объекта obj, с которой 
-//     такой вызов корректно сработает. И пример функции-конструктора, 
-//     с которой такой код поведёт себя неправильно.
+// 1) Давайте создадим новый объект rabbit:
+// function Rabbit(name) {
+//     this.name = name;
+//   }
+//   Rabbit.prototype.sayHi = function() {
+//     alert(this.name);
+//   };
+  
+//   let rabbit = new Rabbit("Rabbit");
+//   Все эти вызовы делают одно и тоже или нет?
+  
+//   rabbit.sayHi();
+//   Rabbit.prototype.sayHi();
+//   Object.getPrototypeOf(rabbit).sayHi();
+//   rabbit.__proto__.sayHi();
 
 // Ответ: 
-// Мы можем использовать такой способ, если мы уверены в том, что 
-//     свойство "constructor" существующего объекта имеет 
-//     корректное значение.
+// В первом вызове this == rabbit, во всех остальных this равен 
+//     Rabbit.prototype, так как это объект перед точкой.
 
-// Например, если мы не меняли "prototype", используемый по умолчанию,
-//     то код ниже, без сомнений, сработает:
-
-// function User(name) {
-//   this.name = name;
-// }
-
-// let user = new User('John');
-// let user2 = new user.constructor('Pete');
-
-// alert( user2.name ); // Pete (сработало!)
-// Всё получилось, потому что User.prototype.constructor == User.
-
-// …Но если кто-то перезапишет User.prototype и забудет заново 
-//     назначить свойство "constructor", чтобы оно указывало на User,
-//     то ничего не выйдет.
-
-// Например:
-
-// function User(name) {
-//   this.name = name;
-// }
-// User.prototype = {}; // (*)
-
-// let user = new User('John');
-// let user2 = new user.constructor('Pete');
-
-// alert( user2.name ); // undefined
-// Почему user2.name приняло значение undefined?
-
-// Рассмотрим, как отработал вызов new user.constructor('Pete'):
-
-// 1) Сначала ищется свойство constructor в объекте user. Не нашлось.
-// 2) Потом задействуется поиск по цепочке прототипов. Прототип объекта
-//     user – это User.prototype, и там тоже нет искомого свойства.
-// 3) Значение User.prototype – это пустой объект {}, чей прототип – 
-//     Object.prototype. Object.prototype.constructor == Object. 
-//     Таким образом, свойство constructor всё-таки найдено.
-// Наконец срабатывает let user2 = new Object('Pete'), но конструктор
-//     Object игнорирует аргументы, он всегда создаёт пустой объект: 
-//     let user2 = {} – это как раз то, чему равен user2 в итоге.
+// Так что только первый вызов выведет Rabbit, а остальные – undefined:
 
 //------------------------------------------- 2 -------------------------------------------
 
