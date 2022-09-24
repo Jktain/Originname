@@ -1,38 +1,19 @@
-const btns = document.querySelectorAll('button'),
-      overlay = document.querySelector('.overlay');
+// console.log(document.head);
+// console.log(document.documentElement);
+// console.log(document.body.childNodes);
+// console.log(document.body.firstChild);
+// console.log(document.body.firstElementChild);
+// console.log(document.body.lastChild);
 
-// btn.onclick = function() {
-//     alert('Click');
-// };
+// console.log(document.querySelector('#current').parentNode);
+// console.log(document.querySelector('#current').parentElement);
 
-// btn.onclick = function() {
-//     alert('SecClick');
-// };
+// console.log(document.querySelector('[data-current="3"]').nextElementSibling);
 
-let i = 0;
-const del = (e) => {
-    console.log(e.currentTarget);
-    console.log(e.type);
-    // i++;
-    // if(i = 1) {
-    //     btn.removeEventListener('click', del);
-    // }
-};
+for (let node of document.body.childNodes) {
+    if (node.nodeName == '#text') {
+        continue; 
+    }
 
-// btn.addEventListener('click', del);
-// overlay.addEventListener('click', del);
-
-btns.forEach(btn => {
-    btn.addEventListener('click', del, {once: true});
-});
-
-const link = document.querySelector('a');
-
-link.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    console.log(e.target);
-});
-
-
-
+    // console.log(node);
+}
